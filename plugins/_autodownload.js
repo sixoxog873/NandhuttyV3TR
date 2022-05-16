@@ -38,7 +38,7 @@ handler.all = async function (m, { isPrems }) {
         let json = await res.json()
         if (!json.status) return m.reply(util.format(json))
         await m.reply(wait)
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nSize: ${json.data.hd.size}\n\n© Wizard-Ser`, m)
+        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nSize: ${json.data.hd.size}\n\n© Laçin Eke YouTube`, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
@@ -47,7 +47,7 @@ handler.all = async function (m, { isPrems }) {
             let json = JSON.parse(igdl)
             await m.reply(wait)
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), watermark, m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'resim' ? '.jpg' : '.mp4'), watermark, m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
             }
         }).catch(_ => _)
     }
@@ -78,7 +78,7 @@ handler.all = async function (m, { isPrems }) {
     if (/^https?:\/\/.*youtu/i.test(m.text)) {
         let results = await yts(url)
         let vid = results.all.find(video => video.seconds < 3600)
-        if (!vid) return m.reply('Video/Audio Not found')
+        if (!vid) return m.reply('Video/Ses bulunumadı')
         let yt = false
         let usedServer = servers[0]
         for (let i in servers) {
@@ -89,7 +89,7 @@ handler.all = async function (m, { isPrems }) {
                 usedServer = server
                 break
             } catch (e) {
-                m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\ntry another server...'}`)
+                m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nBaşka bir sunucu deneyin....'}`)
             }
         }
         if (yt === false) return m.reply(eror)
@@ -100,7 +100,7 @@ handler.all = async function (m, { isPrems }) {
 *Audio File Size:* ${filesizeF}
 *Video File Sizeo:* ${yt2.filesizeF}
 *y2mate servers:* ${usedServer}
-`.trim(), watermark, 'ᴀᴜᴅɪᴏ🔉', `.yta ${vid.url}`, 'ᴠɪᴅᴇᴏ🎥', `.yt ${vid.url}`)
+`.trim(), watermark, 'SES/AUDİO🔉', `.yta ${vid.url}`, 'ᴠɪᴅᴇᴏ🎥', `.yt ${vid.url}`)
     }
 
 }
