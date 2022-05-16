@@ -53,7 +53,7 @@ if (!opts['test']) setInterval(async () => {
 if (opts['server']) require('./server')(global.conn, PORT)
 
 conn.version = [3, 3234, 9]
-conn.browserDescription = [" Nandhutty V3 ", "safari", "3.0.0"];
+conn.browserDescription = [" Laçin Eke YouTube ABONE OL! ", "safari", "3.0.0"];
 conn.connectOptions.maxQueryResponseTime = 60_000
 if (opts['test']) {
   conn.user = {
@@ -128,7 +128,7 @@ global.reloadHandler = function () {
     conn.off('group-update', conn.onGroupUpdate)
     conn.off('CB:action,,call', conn.onCall)
   }
-  conn.welcome = 'Hai, @user!\nWelcome to the group @subject\n\n@desc'
+  conn.welcome = 'Selam, @user!\nGruba hoşgeldin! @subject\n\n@desc'
   conn.bye = '@user GoodBye'
   conn.spromote = '@user now admin'
   conn.sdemote = '@user not admin now'
@@ -180,14 +180,14 @@ global.reload = (_event, filename) => {
     let dir = path.join(pluginFolder, filename)
     if (dir in require.cache) {
       delete require.cache[dir]
-      if (fs.existsSync(dir)) conn.logger.info(`back - requires plugin '${filename}'`)
+      if (fs.existsSync(dir)) conn.logger.info(`back - plugin gerekli! '${filename}'`)
       else {
-        conn.logger.warn(`removed plugin '${filename}'`)
+        conn.logger.warn(`plugin kaldrıldı! '${filename}'`)
         return delete global.plugins[filename]
       }
-    } else conn.logger.info(`need new plugin '${filename}'`)
+    } else conn.logger.info(`Yeni plugin gerekli! '${filename}'`)
     let err = syntaxerror(fs.readFileSync(dir), filename)
-    if (err) conn.logger.error(`syntax error when loading '${filename}'\n${err}`)
+    if (err) conn.logger.error(`Yüklenirken syntax hatası! '${filename}'\n${err}`)
     else try {
       global.plugins[filename] = require(dir)
     } catch (e) {
@@ -236,11 +236,11 @@ async function _quickTest() {
   require('./lib/sticker').support = s
   Object.freeze(global.support)
 
-  if (!s.ffmpeg) conn.logger.warn('Please install ffmpeg to send videos (pkg install ffmpeg)')
-  if (s.ffmpeg && !s.ffmpegWebp) conn.logger.warn('Stickers cant be animated without libwebp on ffmpeg (--enable-ibwebp while compiling ffmpeg)')
-  if (!s.convert && !s.magick && !s.gm) conn.logger.warn('Stickers may not work without imagemagick if libwebp in ffmpeg is not installed (pkg install imagemagick)')
+  if (!s.ffmpeg) conn.logger.warn('Video göndermek için lütfen ffmpeg yükleyin! (pkg install ffmpeg)')
+  if (s.ffmpeg && !s.ffmpegWebp) conn.logger.warn('Stickerlar, ffmpegde libwebp olmadan canlandırılamaz (--enable-ibwebp while compiling ffmpeg)')
+  if (!s.convert && !s.magick && !s.gm) conn.logger.warn('Ffmpegde libwebp kurulu değilse, çıkartmalar imagemagick olmadan çalışmayabilir (pkg install imagemagick)')
 }
 
 _quickTest()
-  .then(() => conn.logger.info('Quick Test Done'))
+  .then(() => conn.logger.info('Hızlı test yapıldı!'))
   .catch(console.error)
