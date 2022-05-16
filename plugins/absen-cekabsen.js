@@ -1,12 +1,12 @@
 let handler = async (m, { conn, usedPrefix }) => {
     let id = m.chat
     conn.absen = conn.absen ? conn.absen : {}
-    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Tidak ada absen berlangsung!`.trim(), 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Mulai', `${usedPrefix}mulaiabsen`, m)
+    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Devamsızlık yapılmaz!`.trim(), 'Laçin Eke YouTube', 'Başlangıç', `${usedPrefix}mulaiabsen`, m)
     let d = new Date
     let date = d.toLocaleDateString('id', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+        Gün: 'numeric',
+        Ay: 'long',
+        Yıl: 'numeric'
     })
     let absen = conn.absen[id][1]
     let list = absen.map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')
@@ -19,10 +19,10 @@ ${conn.absen[id][2]}
 ├ Total: ${absen.length}
 ${list} 
 └────`.trim()
-    await conn.send2Button(m.chat, caption, 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Hadir', `${usedPrefix}absen`, 'Hapus', `${usedPrefix}-absen`, m)
+    await conn.send2Button(m.chat, caption, 'Laçin Eke YouTube', 'Sunmak', `${usedPrefix}absen`, 'Mutlu', `${usedPrefix}-absen`, m)
 }
-handler.help = ['cekabsen']
-handler.tags = ['absen']
+handler.help = ['mevcut olmayan']
+handler.tags = ['yoklama']
 handler.command = /^cekabsen$/i
 
 module.exports = handler
