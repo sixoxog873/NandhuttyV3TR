@@ -23,7 +23,7 @@ handler.before = async function (m) {
                 crop: false,
             })
         } else if (/video/.test(mime)) {
-            if ((q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!')
+            if ((q.msg || q).seconds > 11) return m.reply('Maksimum 10 saniye!')
             let img = await q.download()
             if (!img) return
             wsf = new WSF.Sticker(img, {
@@ -46,8 +46,8 @@ handler.before = async function (m) {
         if (stiker) await this.sendMessage(m.chat, stiker, 'stickerMessage', {
             quoted: m
         })
-        // } finally {
-        //     if (stiker) {
+        // } sonunda {
+        //     eğer (stiker) {
         //     }
         // }
     }
