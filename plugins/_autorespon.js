@@ -24,10 +24,10 @@ handler.all = async function (m, { conn, isBlocked }) {
     //  Biri özel sohbette bir grup bağlantısını davet ettiğinde/gönderdiğinde.
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('bu Linki/Bağlantıyı aç')) && !m.isBaileys && !m.isGroup) {
         this.sendButton(m.chat, `┌「 *Invite Bot to Group* 」
- Hi ${name}
- Want to add bot to your group??
+ Selam ${name}
+ Grubunuza bot eklemek ister misiniz??
 
-Type .join and paste the link
+Şunu yazın .join https://chat.whatsapp.com/GrupBağlantısı
 `.trim(), 'Laçin Eke YouTube', 'Git', ',git', m)
     }
 
