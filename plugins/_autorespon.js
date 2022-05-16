@@ -23,7 +23,7 @@ handler.all = async function (m, { conn, isBlocked }) {
 
     //  Biri özel sohbette bir grup bağlantısını davet ettiğinde/gönderdiğinde.
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('bu Linki/Bağlantıyı aç')) && !m.isBaileys && !m.isGroup) {
-        this.sendButton(m.chat, `┌「 *Invite Bot to Group* 」
+        this.sendButton(m.chat, `┌「 *Botu Gruba Davet Et!* 」
  Selam ${name}
  Grubunuza bot eklemek ister misiniz??
 
