@@ -4,12 +4,12 @@ let handler = async(m, { conn, usedPrefix }) => {
     }
     let id = m.chat
     conn.absent = conn.absent ? conn.absent : {}
-    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `No absence in progress!`, '© stickerin', 'Start', `${usedPrefix}+absent`, m)
+    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Devam eden devamsızlık yok!`, '© stickerin', 'Başla', `${usedPrefix}+absent`, m)
     delete conn.absen[id]
-    m.reply(`successfully delete absent session!`)
+    m.reply(`Olmayan oturumu başarıyla sil!`)
 }
-handler.help = ['remove absent']
-handler.tags = ['absent']
+handler.help = ['Yokluğu kaldır']
+handler.tags = ['mevcut olmayan']
 handler.command = /^(-|delete|delete)absent$/i
 
 module.exports = handler
