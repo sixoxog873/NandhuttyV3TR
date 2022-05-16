@@ -8,27 +8,27 @@ handler.all = async function (m, { conn, isBlocked }) {
     let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
 
-    // ketika ditag 
+    // etiketlendiğinde 
     if (m.isGroup) {
         if (m.mentionedJid.includes(this.user.jid)) {
             await this.send2Button(m.chat,
-                isBanned ? 'Nandhutty not active' : banned ? 'you are banned' : 'Nandhutty active',
-                'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3',
-                isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
+                isBanned ? 'Nandhutty Aktif değil!' : banned ? 'Yasaklandın!' : 'Nandhutty Aktif!',
+                'Laçin Eke YouTube',
+                isBanned ? 'Yasaklamayı kaldır' : banned ? 'Bot Sahibi' : 'Menü',
                 isBanned ? '.unban' : banned ? '.owner' : '.?',
-                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
+                m.isGroup ? 'Yasakla' : isBanned ? 'Yasaklamayı kaldır' : 'Bağış yap!',
                 m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
         }
     }
 
-    // ketika ada yang invite/kirim link grup di chat pribadi
-    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
+    //  Biri özel sohbette bir grup bağlantısını davet ettiğinde/gönderdiğinde.
+    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('bu Linki/Bağlantıyı aç')) && !m.isBaileys && !m.isGroup) {
         this.sendButton(m.chat, `┌「 *Invite Bot to Group* 」
  Hi ${name}
  Want to add bot to your group??
 
 Type .join and paste the link
-`.trim(), 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Git', ',git', m)
+`.trim(), 'Laçin Eke YouTube', 'Git', ',git', m)
     }
 
 
@@ -37,9 +37,9 @@ Type .join and paste the link
         if (new Date() * 1 - set.backupTime > 1000 * 60 * 60) {
             let d = new Date
             let date = d.toLocaleDateString('id', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
+                Gün: 'numeric',
+                Ay: 'long',
+                Yıl: 'numeric'
             })
             await global.db.write()
             this.reply(global.owner[0] + '@s.whatsapp.net', `Database: ${date}`, null)
@@ -53,7 +53,7 @@ Type .join and paste the link
         if (new Date() * 1 - set.status > 1000) {
             let _uptime = process.uptime() * 1000
             let uptime = conn.clockString(_uptime)
-            await this.setStatus(`Active during ${uptime} | Mode: ${set.self ? 'Private' : set.group ? 'Group Only' : 'Publik'} | Nandhutty V3 by Ajmal and Achu`).catch(_ => _)
+            await this.setStatus(`Sırasında aktif ${uptime} | Mode: ${set.self ? 'Özel' : set.group ? 'Sadece Gruplarda' : 'Halka açık/Public'} | Nandhutty V3 TR By Laçin Eke YouTube`).catch(_ => _)
             set.status = new Date() * 1
         }
     }
