@@ -470,16 +470,15 @@ type *.on delete* to turn off this message
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'This command can only be used by _*Bot Owner✅*_',
-    owner: 'This command can only be used by _*Bot Owner✅*_',
-    mods: 'This command can only be used by _*Moderator✅*_',
-    premium: 'This command is only for _*Premium users✅*_',
-    group: 'This command can only be used in groups✅',
-    private: 'This command can only be used in Private Chat✅',
-    admin: 'This command is only for *Admin* in the group✅',
-    botAdmin: 'Make bot an *Admin* to use this command✅',
-    unreg: 'Please register to use this feature by typing:\n\n*#register name.age*\n\nEXAMPLE: *#register Wizard.18*',
-    nsfw: 'NSFW is not active'
+    rowner: 'Bu komutu yalnızca _*Bot Sahibi*_ kullanabilir!',
+    owner: 'Bu komutu yalnızca _*Bot Sahibi*_ kullanabilir!',
+    mods: 'Bu komutu yalnızca _*Yetkili*_ kullanabilir!',
+    premium: 'Bu komutu yalnızca _*Premium kullanıcılar*_ kullanabilir!',
+    group: 'Bu komut yalnızda gruplarda kullanılabilir!✅',
+    private: 'Bu komut yalnızda özel sohbetlerde kullanılabilir!✅',
+    admin: 'Bu komutu yalnızca _*Yetkili*_ grupta kullanabilir!✅',
+    botAdmin: 'Bu komutu kullanmak için botu *Yönetici* yapınız lütfen!✅',
+    unreg: 'Bu özelliği kullanmak için lütfen şunu yazarak kaydolun:\n\n*#register name.age*\n\nÖRNEK: *#register Lachin.31*',
   }[type]
   if (msg) return m.reply(msg)
 }
@@ -489,7 +488,7 @@ let chalk = require('chalk')
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
   fs.unwatchFile(file)
-  console.log(chalk.redBright("Update 'handler.js'"))
+  console.log(chalk.redBright("Güncelle 'handler.js'"))
   delete require.cache[file]
   if (global.reloadHandler) console.log(global.reloadHandler())
 })
