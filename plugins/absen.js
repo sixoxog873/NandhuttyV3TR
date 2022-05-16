@@ -1,28 +1,28 @@
 let handler = async (m, { conn, usedPrefix }) => {
     let id = m.chat
     conn.absen = conn.absen ? conn.absen : {}
-    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Tidak ada absen berlangsung!`, 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Mulai', `${usedPrefix}mulaiabsen`, m)
+    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Devamsızlık yapılmaz!`, 'Laçin Eke YouTube', 'Başlangıç', `${usedPrefix}mulaiabsen`, m)
     let absen = conn.absen[id][1]
     const wasVote = absen.includes(m.sender)
-    if (wasVote) throw '*Kamu sudah absen!*'
+    if (wasVote) throw '*Sen yoksun!*'
     absen.push(m.sender)
     let d = new Date
     let date = d.toLocaleDateString('id', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+        Gün: 'numeric',
+        Ay: 'long',
+        Yıl: 'numeric'
     })
     let list = absen.map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')
     let caption = `
-Tanggal: ${date}
+Tarih: ${date}
 
 ${conn.absen[id][2]}
 
-┌「 *Absen* 」  
-├ Total: ${absen.length}
+┌「 *Yoklama* 」  
+├ Toplam: ${absen.length}
 ${list} 
 └────`.trim()
-    await conn.send2Button(m.chat, caption, 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Absen', `${usedPrefix}absen`, 'Cek', `${usedPrefix}cekabsen`, m)
+    await conn.send2Button(m.chat, caption, 'Laçin Eke YouTube', 'Yoklama', `${usedPrefix}absen`, 'Kontrol etmek', `${usedPrefix}cekabsen`, m)
 }
 handler.help = ['absen']
 handler.tags = ['absen']
