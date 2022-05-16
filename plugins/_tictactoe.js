@@ -10,7 +10,7 @@ handler.before = async function (m) {
     let isTie = !1
     let isSurrender = !1
     this.game = this.game ? this.game : {}
-    let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'PLAYING')
+    let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'OYNAMAK')
     if (room) {
         // m.reply(`[DEBUG]\n${parseInt(m.text)}`)
         if (!/^([1-9]|(me)?nyerah|surr?ender)$/i.test(m.text)) return !0
@@ -24,10 +24,10 @@ handler.before = async function (m) {
         }))
         if (!isSurrender && 1 > (ok = room.game.turn(m.sender === room.game.playerO, parseInt(m.text) - 1))) {
             m.reply({
-                '-3': 'Game telah berakhir',
-                '-2': 'Invalid',
-                '-1': 'Posisi Invalid',
-                0: 'Posisi Invalid',
+                '-3': 'Oyun sona erdi!',
+                '-2': 'Geçersiz',
+                '-1': 'Geçersiz konum!',
+                0: 'Geçersiz konum!',
             }[ok])
             return !0
         }
@@ -57,22 +57,22 @@ handler.before = async function (m) {
 ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
-${isWin ? `@${winner.split`@`[0]} Menang! (+${winScore} XP)` : isTie ? `Game berakhir (+${playScore} XP)` : `Giliran ${['❌', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split`@`[0]})`}
+${isWin ? `@${winner.split`@`[0]} Menang! (+${winScore} XP)` : isTie ? `Oyun bitti! (+${playScore} XP)` : `Senin sıran! ${['❌', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split`@`[0]})`}
 
 ❌: @${room.game.playerX.split`@`[0]}
 ⭕: @${room.game.playerO.split`@`[0]}
 Type *nyerah* untuk nyerah
-Room ID: ${room.id}
+Oda ID: ${room.id}
 `.trim()
         let users = global.db.data.users
         if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
             room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-        if (room.x !== room.o) await conn.sendButton(room.x, str, 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Nyerah', 'nyerah', m, {
+        if (room.x !== room.o) await conn.sendButton(room.x, str, 'Laçin Eke YouTube', 'Pes etmek', 'pes etmek', m, {
             contextInfo: {
                 mentionedJid: this.parseMention(str)
             }
         })
-        await conn.sendButton(room.o, str, 'ɴᴀɴᴅʜᴜᴛᴛʏ ᴠ3', 'Nyerah', 'nyerah', m, {
+        await conn.sendButton(room.o, str, 'Laçin Eke YouTube', 'Pes etmek', 'pes etmek', m, {
             contextInfo: {
                 mentionedJid: this.parseMention(str)
             }
